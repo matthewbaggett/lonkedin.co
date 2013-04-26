@@ -60,6 +60,7 @@ class mangler{
     $this->replace($this->page->find('#profile-skills ol.skills .competency .jellybean'));
 
     $this->page->find('#footer #copyright')->innertext = "LinkedIn is &copy; LinkedIn and has nothing to do with LonkedIn. LonkedIn was <a href=\"http://twitter.com/matthewbaggett\">Matt's bad idea</a>";
+    $this->page->find('ul#nav-legal')->plaintext = '';
   }
 
   private function replace(&$string){
