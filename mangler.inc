@@ -11,6 +11,11 @@ class mangler{
   private $simple_dom;
   private $page;
 
+  private $replacements = array(
+    'LinkedIn' => 'LonkedIn',
+    'Human' => array('Minion', 'Underling')
+  );
+
   public function run(){
     $this->init();
     $this->fetchLinkedIn();
@@ -34,7 +39,25 @@ class mangler{
   }
 
   private function mangle(){
-    $this->page->find('title', 0)->innertext = 'Buttocks.';
+    $this->replace($this->page->find('title', 0));
+    $this->replace($this->page->find('dd.industry'));
+  }
+
+  private function replace(&$string){
+    if(is_array($string)){
+      foreach($string as &$sub_string){
+        $this->replace($sub_string);
+      }
+    }else{
+      foreach($this->replacements as $original => $replacement){
+        if(is_array($replacement)){
+          $replacement_text = $replacement[rand(0,count($replacement)-1)]
+        }else{
+          $replacement_text = $replacement;
+        }
+        $string->innertext = str_ireplace($original, $replacement_text, $string->innertext);
+      }
+    }
   }
 
   private function render(){
