@@ -2,7 +2,7 @@
 if ((!isset($_REQUEST['password']) || $_REQUEST['password'] !== 'kU4EdRaw') && PHP_SAPI !== 'cli') {
   die("Wrong password");
 }
-chdir("./");
+chdir("../");
 ob_start();
 
 $libraries = array(
