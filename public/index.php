@@ -1,3 +1,4 @@
 <?php
-var_dump($_SERVER);
-var_dump($_REQUEST);
+require_once("../bootstrap.inc");
+$app = new mangler();
+$app->run();
