@@ -74,10 +74,11 @@ class mangler{
     ob_end_clean();
 
     // Mangle URLs...
-    $this->html = str_replace("http://linkedin.com",      "http://lonkedin.co", $this->html);
-    $this->html = str_replace("http://www.linkedin.com",  "http://lonkedin.co", $this->html);
-    $this->html = str_replace("https://linkedin.com",     "http://lonkedin.co", $this->html);
-    $this->html = str_replace("https://www.linkedin.com", "http://lonkedin.co", $this->html);
+    $replacement_domain = "http://{$_SERVER['HTTP_HOST']}";
+    $this->html = str_replace("http://linkedin.com",      $replacement_domain, $this->html);
+    $this->html = str_replace("http://www.linkedin.com",  $replacement_domain, $this->html);
+    $this->html = str_replace("https://linkedin.com",     $replacement_domain, $this->html);
+    $this->html = str_replace("https://www.linkedin.com", $replacement_domain, $this->html);
 
   }
 
