@@ -18,7 +18,7 @@ class mangler{
     'employees' => array("Minions", "Underlings", "Gimps", "Winged Monkeys"),
     'Greater Manchester,' => 'Greater Manchester, The Frozen Wastes of the North,',
     'Get introduced to' => 'Make a date with',
-    'consultant' => 'bullshitter',
+    'Consultant' => 'Bullshitter',
     'Team Member' => "Team Gimp",
     'Ruby' => array("Ghetto", "Hipster")
   );
@@ -54,9 +54,12 @@ class mangler{
     $this->replace($this->page->find('title', 0));
     $this->replace($this->page->find('dd.industry'));
     $this->replace($this->page->find('.join-linkedin ul li'));
+    $this->replace($this->page->find('.profile-header .headline-title'));
     $this->replace($this->page->find('#profile-experience .position .postitle .title'));
     $this->replace($this->page->find('#profile-experience .position .orgstats'));
     $this->replace($this->page->find('#profile-skills ol.skills .competency .jellybean'));
+
+    $this->page->find('#footer #copyright')->innertext = "LinkedIn is &copy; LinkedIn and has nothing to do with LonkedIn. LonkedIn was <a href=\"http://twitter.com/matthewbaggett\">Matt's bad idea</a>";
   }
 
   private function replace(&$string){
