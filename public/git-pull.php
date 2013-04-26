@@ -8,6 +8,7 @@ ob_start();
 $libraries = array(
   "krumo" => "https://github.com/tony/krumo.git",
   "pretty-exceptions" => "git://github.com/matthewbaggett/pretty-exceptions.git",
+  "simple-html-dom" => "git://github.com/jjanyan/Simple-HTML-DOM.git",
 );
 
 // The commands
