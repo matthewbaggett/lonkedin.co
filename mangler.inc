@@ -14,6 +14,8 @@ class mangler{
   public function run(){
     $this->init();
     $this->fetchLinkedIn();
+    $this->mangle();
+    $this->render();
   }
 
   private function init(){
@@ -24,16 +26,18 @@ class mangler{
   private function fetchLinkedIn(){
     $this->linked_in_url = "http://www.linkedin.com/" . str_replace("public/","",$_SERVER['REQUEST_URI']);
 
-    krumo($this->linked_in_url);
-
     $this->curl->request($this->linked_in_url);
 
     $this->html = $this->curl->getHttpBody();
 
     $this->page = $this->simple_dom->load($this->html);
+  }
 
-    krumo($this->html);
+  private function mangle(){
+    $this->page->find('title', 0)->innertext = 'Buttocks.';
+  }
 
-    krumo($this->page);
+  private function render(){
+    echo $this->page;
   }
 }
