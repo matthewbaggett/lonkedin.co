@@ -51,7 +51,7 @@ class mangler{
     }else{
       foreach($this->replacements as $original => $replacement){
         if(is_array($replacement)){
-          $replacement_text = $replacement[rand(0,count($replacement)-1)]
+          $replacement_text = $replacement[rand(0,count($replacement)-1)];
         }else{
           $replacement_text = $replacement;
         }
