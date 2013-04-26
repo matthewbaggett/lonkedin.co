@@ -14,10 +14,12 @@ class mangler{
   private $replacements = array(
     'LinkedIn' => 'LonkedIn',
     'Human' => array('Minion', 'Underling'),
+    'employees' => array("Minions", "Underlings", "Gimps", "Winged Monkeys"),
     'Greater Manchester,' => 'Greater Manchester, The Frozen Wastes of the North,',
     'Get introduced to' => 'Make a date with',
     'consultant' => 'bullshitter',
-    'Team Member' => "Team Gimp"
+    'Team Member' => "Team Gimp",
+    'Ruby' => array("Ghetto", "Hipster")
   );
 
   public function run(){
@@ -45,6 +47,10 @@ class mangler{
   private function mangle(){
     $this->replace($this->page->find('title', 0));
     $this->replace($this->page->find('dd.industry'));
+    $this->replace($this->page->find('.join-linkedin ul li'));
+    $this->replace($this->page->find('#profile-experience .position .postitle .title'));
+    $this->replace($this->page->find('#profile-experience .position .orgstats'));
+    $this->replace($this->page->find('#profile-skills ol.skills .competency .jellybean'));
   }
 
   private function replace(&$string){
