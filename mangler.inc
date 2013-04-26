@@ -9,6 +9,7 @@ class mangler{
    */
   private $curl;
   private $simple_dom;
+  private $page;
 
   public function run(){
     $this->init();
@@ -21,10 +22,9 @@ class mangler{
   }
 
   private function fetchLinkedIn(){
-    krumo($_SERVER);
-    krumo($_REQUEST);
-
     $this->linked_in_url = "http://www.linkedin.com/" . str_replace("public/","",$_SERVER['REQUEST_URI']);
+
+    krumo($this->linked_in_url);
 
     $this->curl->request($this->linked_in_url);
 
@@ -32,6 +32,8 @@ class mangler{
 
     $this->page = $this->simple_dom->load($this->html);
 
-    krumo($this);
+    krumo($this->html);
+
+    krumo($this->page);
   }
 }
