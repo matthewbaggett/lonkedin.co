@@ -10,6 +10,7 @@ class mangler{
   private $curl;
   private $simple_dom;
   private $page;
+  private $cache_file;
 
   private $replacements = array(
     'LinkedIn' => 'LonkedIn',
@@ -37,9 +38,14 @@ class mangler{
   private function fetchLinkedIn(){
     $this->linked_in_url = "http://www.linkedin.com/" . str_replace("public/","",$_SERVER['REQUEST_URI']);
 
-    $this->curl->request($this->linked_in_url);
-
-    $this->html = $this->curl->getHttpBody();
+    $this->cache_file = "cache/" . hash("sha1",$this->linked_in_url).".cache";
+    if(!file_exists($this->cache_file)){
+      $this->curl->request($this->linked_in_url);
+      $this->html = $this->curl->getHttpBody();
+      file_put_contents($this->cache_file, $this->html);
+    }else{
+      $this->html = file_get_contents($this->cache_file);
+    }
 
     $this->page = $this->simple_dom->load($this->html);
   }
