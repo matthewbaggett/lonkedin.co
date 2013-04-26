@@ -13,7 +13,11 @@ class mangler{
 
   private $replacements = array(
     'LinkedIn' => 'LonkedIn',
-    'Human' => array('Minion', 'Underling')
+    'Human' => array('Minion', 'Underling'),
+    'Greater Manchester,' => 'Greater Manchester, The Frozen Wastes of the North,',
+    'Get introduced to' => 'Make a date with',
+    'consultant' => 'bullshitter',
+    'Team Member' => "Team Gimp"
   );
 
   public function run(){
